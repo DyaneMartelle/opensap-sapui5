@@ -11,108 +11,140 @@
 		title="{i18n>worklistViewTitle}">
 		
 		<semantic:content>
-			
-			<!--
-	    	  parameters: {
-				expand: 'ToSupplier'
-			  }
-		
-			  This parameter is mandatory. Without it, links are not displayed
-			  it also represents a navigation to a different object in the OData metamodel.
-			  the first service request for the products and no additional requests are required
-			-->
-			
-			<Table
-				id="table"
-				width="auto"
-				class="sapUiResponsiveMargin"
-				items="{
-					path: '/ProductSet',
-					sorter: {
-						path: 'ProductID',
-						descending: false
-					},
-					parameters: {
-						expand: 'ToSupplier'
-					}
-				}"
-				noDataText="{worklistView>/tableNoDataText}"
-				busyIndicatorDelay="{worklistView>/tableBusyDelay}"
-				growing="true"
-				growingScrollToLoad="true"
-				updateFinished="onUpdateFinished">
-
-				<headerToolbar>
-					<Toolbar>
-						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
-						<ToolbarSpacer />
-						<SearchField
-							id="searchField"
-							tooltip="{i18n>worklistSearchTooltip}"
-							search="onSearch"
-							width="auto">
-						</SearchField>
-					</Toolbar>
-				</headerToolbar>
-
-				<columns>
-					<Column id="nameColumn">
-						<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
-					</Column>
-					
-					<!--  new column showing the product’s supplier -->
-					<Column 
-						id="supplierNameColumn"
-						demandPopin="true"
-						minScreenWidth="Tablet"> <!-- this represent that will be responsive in tablets -->
-						<Text text="{i18n>tableSupplierColumnTitle}"/>
-					</Column>
-					
-					<!-- column that displays the supplier’s web address as a link -->
-					<Column id="webAddressColumn"
-						demandPopin="false"
-						minScreenWidth="Tablet">
-						<Text text="{i18n>tableSupplierWebAddressColumnTitle}"/>
-					</Column>					
-					
-					<Column id="unitNumberColumn" hAlign="End">
-						<Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
-					</Column>
-				</columns>
+			<IconTabBar
+				id="iconTabBar"
+				select="onQuickFilter"
+				expandable="false"
+				applyContentPadding="false">
 				<items>
-					<!-- Represents a row of the table -->
-					<ColumnListItem
-						type="Navigation"
-						press="onPress">
-						<cells>
-							<ObjectIdentifier
-								title="{ProductID}"
-								text="{Name}"/>
-								
-							<Text text="{SupplierName}"/>
-							
-							<!-- each item of the supplier’s web address as a link -->
-							<Link
-								text="{ToSupplier/WebAddress}"
-								href="{ToSupplier/WebAddress}"
-								target="_blank"/>
-								
-							<ObjectNumber
-								number="{
-									path: 'Price',
-									formatter: '.formatter.numberUnit'
-								}"
-								unit="{CurrencyCode}"/>
-						</cells>
-					</ColumnListItem>
+					<IconTabFilter
+						key="all"
+						showAll="true"
+						count="{i18n>worklistFilterProductsAllCount}"
+						text="{i18n>worklistFilterProductsAll}"/>
+					<IconTabSeparator/>
+					<IconTabFilter
+						key="cheap"
+						icon="sap-icon://waiver"
+						iconColor="Positive"
+						count="{worklistView>/cheap}"
+						text="{i18n>worklistFilterCheap}"/>
+					<IconTabFilter
+						key="moderate"
+						icon="sap-icon://loan"
+						iconColor="Critical"
+						count="{worklistView>/moderate}"
+						text="{i18n>worklistFilterModerate}"/>
+					<IconTabFilter
+						key="expensive"
+						icon="sap-icon://money-bills"
+						iconColor="Negative"
+						count="{worklistView>/expensive}"
+						text="{i18n>worklistFilterExpensive}"/>
 				</items>
-			</Table>
+				<content>
+					<!--
+			    	  parameters: {
+						expand: 'ToSupplier'
+					  }
+				
+					  This parameter is mandatory. Without it, links are not displayed
+					  it also represents a navigation to a different object in the OData metamodel.
+					  the first service request for the products and no additional requests are required
+					-->
+					
+					<Table
+						id="table"
+						width="auto"
+						items="{
+							path: '/ProductSet',
+							sorter: {
+								path: 'ProductID',
+								descending: false
+							},
+							parameters: {
+								expand: 'ToSupplier'
+							}
+						}"
+						noDataText="{worklistView>/tableNoDataText}"
+						busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+						growing="true"
+						growingScrollToLoad="true"
+						updateFinished="onUpdateFinished">
+		
+						<headerToolbar>
+							<Toolbar>
+								<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
+								<ToolbarSpacer />
+								<SearchField
+									id="searchField"
+									tooltip="{i18n>worklistSearchTooltip}"
+									search="onSearch"
+									width="auto">
+								</SearchField>
+							</Toolbar>
+						</headerToolbar>
+		
+						<columns>
+							<Column id="nameColumn">
+								<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
+							</Column>
+							
+							<!--  new column showing the product’s supplier -->
+							<Column 
+								id="supplierNameColumn"
+								demandPopin="true"
+								minScreenWidth="Tablet"> <!-- this represent that will be responsive in tablets -->
+								<Text text="{i18n>tableSupplierColumnTitle}"/>
+							</Column>
+							
+							<!-- column that displays the supplier’s web address as a link -->
+							<Column id="webAddressColumn"
+								demandPopin="false"
+								minScreenWidth="Tablet">
+								<Text text="{i18n>tableSupplierWebAddressColumnTitle}"/>
+							</Column>					
+							
+							<Column id="unitNumberColumn" hAlign="End">
+								<Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
+							</Column>
+						</columns>
+						<items>
+							<!-- Represents a row of the table -->
+							<ColumnListItem
+								type="Navigation"
+								press="onPress">
+								<cells>
+									<ObjectIdentifier
+										title="{ProductID}"
+										text="{Name}"/>
+										
+									<Text text="{SupplierName}"/>
+									
+									<!-- each item of the supplier’s web address as a link -->
+									<Link
+										text="{ToSupplier/WebAddress}"
+										href="{ToSupplier/WebAddress}"
+										target="_blank"/>
+										
+									<ObjectNumber
+										number="{
+											path: 'Price',
+											formatter: '.formatter.numberUnit'
+										}"
+										unit="{CurrencyCode}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</IconTabBar> 
+
 		</semantic:content>
 
 		<semantic:sendEmailAction>
 			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
 		</semantic:sendEmailAction>
-
 
 	</semantic:FullscreenPage>
 
