@@ -28,3 +28,7 @@ Week 2 - May 31, 2016
 - Binding Contexts With Element Binding
 - Working with OData Services
 - Bonus Exercise - Map Location Formatter
+
+Week 3 - June 07, 2016
+- Creating Apps with Templates
+
