@@ -9,7 +9,19 @@
 		navButtonPress="onNavBack"
 		showNavButton="true"
 		title="{i18n>worklistViewTitle}">
+		
 		<semantic:content>
+			
+			<!--
+	    	  parameters: {
+				expand: 'ToSupplier'
+			  }
+		
+			  This parameter is mandatory. Without it, links are not displayed
+			  it also represents a navigation to a different object in the OData metamodel.
+			  the first service request for the products and no additional requests are required
+			-->
+			
 			<Table
 				id="table"
 				width="auto"
@@ -19,6 +31,9 @@
 					sorter: {
 						path: 'ProductID',
 						descending: false
+					},
+					parameters: {
+						expand: 'ToSupplier'
 					}
 				}"
 				noDataText="{worklistView>/tableNoDataText}"
@@ -44,18 +59,44 @@
 					<Column id="nameColumn">
 						<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
 					</Column>
+					
+					<!--  new column showing the product’s supplier -->
+					<Column 
+						id="supplierNameColumn"
+						demandPopin="true"
+						minScreenWidth="Tablet"> <!-- this represent that will be responsive in tablets -->
+						<Text text="{i18n>tableSupplierColumnTitle}"/>
+					</Column>
+					
+					<!-- column that displays the supplier’s web address as a link -->
+					<Column id="webAddressColumn"
+						demandPopin="false"
+						minScreenWidth="Tablet">
+						<Text text="{i18n>tableSupplierWebAddressColumnTitle}"/>
+					</Column>					
+					
 					<Column id="unitNumberColumn" hAlign="End">
 						<Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
 					</Column>
 				</columns>
-
 				<items>
+					<!-- Represents a row of the table -->
 					<ColumnListItem
 						type="Navigation"
 						press="onPress">
 						<cells>
 							<ObjectIdentifier
-								title="{ProductID}"/>
+								title="{ProductID}"
+								text="{Name}"/>
+								
+							<Text text="{SupplierName}"/>
+							
+							<!-- each item of the supplier’s web address as a link -->
+							<Link
+								text="{ToSupplier/WebAddress}"
+								href="{ToSupplier/WebAddress}"
+								target="_blank"/>
+								
 							<ObjectNumber
 								number="{
 									path: 'Price',

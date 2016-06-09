@@ -21,6 +21,12 @@
 							formatter: '.formatter.numberUnit'
 				}"
 				numberUnit="{CurrencyCode}">
+			    
+			    <!-- Attribute aggregation of the ObjectHeader -->
+			    <attributes>
+					<ObjectAttribute text="{Name}"/>
+				</attributes>
+				
 			</ObjectHeader>
  		</semantic:content>
 
