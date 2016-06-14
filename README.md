@@ -35,3 +35,4 @@ Week 3 - June 07, 2016
 - Adding Quick Filters
 - Adapting to the User's Device
 - Fragments and Code Reuse
+- Implementing Dialogs

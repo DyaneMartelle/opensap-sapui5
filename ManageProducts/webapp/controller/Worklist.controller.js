@@ -171,9 +171,38 @@ sap.ui.define([
 			this._oTable.getBinding("items").refresh();
 		},
 
+		/**
+		 * Event handler for press event on object identifier. 
+		 * opens detail popover to show product dimensions.
+		 * @public
+		 */
+		onShowDetailPopover: function(oEvent) {
+			var oPopover = this._getPopover();
+			var oSource = oEvent.getSource();
+
+			// connect dialog to view (models, lifecycle)
+			this.getView().addDependent(oPopover);
+			oPopover.bindElement(oSource.getBindingContext().getPath());
+
+			// open dialog
+			oPopover.openBy(oSource);
+		},
+
 		/* =========================================================== */
 		/* internal methods                                            */
 		/* =========================================================== */
+
+		/**
+		 * Private function to create dialog lazily
+		 */
+		_getPopover: function() {
+			// create dialog lazily
+			if (!this._oPopover) {
+				// create popover via fragment factory
+				this._oPopover = sap.ui.xmlfragment("opensap.manageproducts.view.ResponsivePopover", this);
+			}
+			return this._oPopover;
+		},
 
 		/**
 		 * Shows the selected item on the object page
@@ -195,6 +224,7 @@ sap.ui.define([
 		_applySearch: function(oTableSearchState) {
 			var oViewModel = this.getModel("worklistView");
 			this._oTable.getBinding("items").filter(oTableSearchState, "Application");
+
 			// changes the noDataText of the list in case there are no filter results
 			if (oTableSearchState.length !== 0) {
 				oViewModel.setProperty("/tableNoDataText", this.getResourceBundle().getText("worklistNoDataWithSearchText"));
