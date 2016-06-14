@@ -34,3 +34,4 @@ Week 3 - June 07, 2016
 - Defining a Responsive Table
 - Adding Quick Filters
 - Adapting to the User's Device
+- Fragments and Code Reuse
