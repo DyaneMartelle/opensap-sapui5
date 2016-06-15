@@ -36,3 +36,6 @@ Week 3 - June 07, 2016
 - Adapting to the User's Device
 - Fragments and Code Reuse
 - Implementing Dialogs
+
+Week 4 - June 14, 2016
+- Navigation and Routing Concepts

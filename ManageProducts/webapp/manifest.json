@@ -98,21 +98,24 @@
 				},
 				"async": true
 			},
-			"routes": [
-				{
+			"routes": [{
 					"pattern": "",
 					"name": "worklist",
 					"target": [
 						"worklist"
 					]
-				},
-				{
+				}, {
 					"pattern": "ProductSet/{objectId}",
 					"name": "object",
 					"target": [
 						"object"
 					]
+				}, {
+					"pattern": "AddProduct",
+					"name": "add",
+					"target": "add"
 				}
+
 			],
 			"targets": {
 				"worklist": {
@@ -125,6 +128,12 @@
 					"viewId": "object",
 					"viewLevel": 2
 				},
+				"add": {
+					"viewName": "Add",
+					"viewId": "add",
+					"viewLevel": 3
+				},
+
 				"objectNotFound": {
 					"viewName": "ObjectNotFound",
 					"viewId": "objectNotFound"
