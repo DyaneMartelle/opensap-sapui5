@@ -26,7 +26,7 @@
         "id": 87567846,
         "runnerId": "webapprunner",
         "displayName": "App",
-        "lastRunTimeStamp": 1466209999421
+        "lastRunTimeStamp": 1466355628911
       }
     },
     {
@@ -52,7 +52,8 @@
       "_metadata": {
         "id": 8735167,
         "runnerId": "webapprunner",
-        "displayName": "Unit Tests"
+        "displayName": "Unit Tests",
+        "lastRunTimeStamp": 1466355581963
       }
     },
     {

@@ -40,3 +40,4 @@ Week 3 - June 07, 2016
 Week 4 - June 14, 2016
 - Navigation and Routing Concepts
 - Updating and Manipulating Data
+- Writing Unit Tests with QUnit
