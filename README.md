@@ -41,3 +41,4 @@ Week 4 - June 14, 2016
 - Navigation and Routing Concepts
 - Updating and Manipulating Data
 - Writing Unit Tests with QUnit
+- Writing Integration Tests with OPA
