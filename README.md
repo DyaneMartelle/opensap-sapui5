@@ -42,3 +42,4 @@ Week 4 - June 14, 2016
 - Updating and Manipulating Data
 - Writing Unit Tests with QUnit
 - Writing Integration Tests with OPA
+- Creating Custom Controls
