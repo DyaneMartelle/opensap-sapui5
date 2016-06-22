@@ -71,6 +71,7 @@ sap.ui.define([
 
 			// show success messge
 			var sMessage = this.getResourceBundle().getText("newObjectCreated", [oProduct.Name]);
+			
 			MessageToast.show(sMessage, {
 				closeOnBrowserNavigation: false
 			});

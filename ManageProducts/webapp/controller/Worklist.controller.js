@@ -1,11 +1,16 @@
 sap.ui.define([
 	"opensap/manageproducts/controller/BaseController",
-	"sap/ui/model/json/JSONModel",
 	"opensap/manageproducts/model/formatter",
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/model/odata/v2/ODataModel",
+	"sap/ui/commons/MessageBox",
+	"sap/ui/commons/Dialog",
+	"sap/m/MessageToast",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"sap/ui/core/routing/History"
-], function(BaseController, JSONModel, formatter, Filter, FilterOperator, History) {
+
+], function(BaseController, formatter, JSONModel, ODataModel, MessageBox, Dialog, MessageToast, Filter, FilterOperator, History) {
 	"use strict";
 
 	return BaseController.extend("opensap.manageproducts.controller.Worklist", {
@@ -54,6 +59,7 @@ sap.ui.define([
 				moderate: 0,
 				expensive: 0
 			});
+
 			this.setModel(oViewModel, "worklistView");
 
 			// Make sure, busy indication is showing immediately so there is no
@@ -75,6 +81,56 @@ sap.ui.define([
 		 */
 		onAdd: function() {
 			this.getRouter().navTo("add");
+		},
+
+		/*
+		 * Week 4 - Bonus exercise
+		 *
+		 */
+		onDeleteItem: function(oEvent) {
+			var oContext = oEvent.getSource().getBindingContext();
+			var productId = oContext.getProperty("ProductID");
+			var productName = oContext.getProperty("Name");
+
+			// Read message from i18n model (i18n\i18n.properties)
+			var oBundle = this.getView().getModel("i18n").getResourceBundle();
+
+			var sDeleteMessage = oBundle.getText("removeProduct", [productName, productId]);
+
+			MessageBox.show(
+				sDeleteMessage,
+				MessageBox.Icon.WARNING,
+				"Remove product", [MessageBox.Action.YES, MessageBox.Action.NO],
+				function(sResult) {
+					if (sResult === MessageBox.Action.YES) {
+						// to get the points with validator you must use this part out of this condition
+						var oDataModel = new ODataModel("/destinations/ES4/");
+
+						oDataModel.remove("/ProductSet('" + productId + "')", {
+							success: function(Evt) {
+								MessageToast.show(oBundle.getText("removedSuccess", [productName, productId]));
+							},
+							error: function(Evt) {
+								MessageToast.show(Evt.statusText);
+							}
+						});
+
+					} else {
+						MessageToast.show("Product not removed");
+					}
+				},
+				MessageBox.Action.YES);
+
+			// var oDataModel = new ODataModel("/destinations/ES4/");
+
+			// oDataModel.remove("/ProductSet('" + productId + "')", {
+			// 	success: function(Evt) {
+			// 		MessageToast.show("Product id: " + productId + " product name: " + productName + " was deleted");
+			// 	},
+			// 	error: function(Evt) {
+			// 		MessageToast.show("Error: " + Evt.statusText);
+			// 	}
+			// });
 		},
 
 		/**

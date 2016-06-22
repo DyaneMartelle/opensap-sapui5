@@ -39,8 +39,8 @@
     }
   ],
   "mockpreview": {
-    "mockUri": "/destinations/ES4/",
-    "metadataFilePath": "localService/metadata.xml",
+    "mockUri": "/destinations/ES4",
+    "metadataFilePath": "",
     "loadJSONFiles": false,
     "loadCustomRequests": false,
     "mockRequestsFilePath": ""
@@ -63,15 +63,5 @@
     "notifyBeforePushLevel": "Error",
     "blockPush": false,
     "blockPushLevel": "Error"
-  },
-  "beautifier": {
-    "keep_array_indentation": false,
-    "break_chained_methods": false,
-    "space_before_conditional": true,
-    "unescape_strings": false,
-    "tab_size": "1",
-    "max_preserve_newlines": "2",
-    "wrap_line_length": "140",
-    "brace_style": "collapse"
   }
 }

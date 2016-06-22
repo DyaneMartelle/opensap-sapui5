@@ -1,6 +1,6 @@
 # Developing Web Apps with SAPUI5
 
-Exercises from Open SAP course "Developing Web Apps with SAPUI5"
+Exercises from OpenSAP course
 
 https://open.sap.com/courses/ui51
 
@@ -27,7 +27,7 @@ Week 2 - May 31, 2016
 - Sorting, Grouping And Filtering
 - Binding Contexts With Element Binding
 - Working with OData Services
-- Bonus Exercise - Map Location Formatter
+- Bonus Exercise: Map Location Formatter
 
 Week 3 - June 07, 2016
 - Creating Apps with Templates
@@ -42,4 +42,5 @@ Week 4 - June 14, 2016
 - Updating and Manipulating Data
 - Writing Unit Tests with QUnit
 - Writing Integration Tests with OPA
-- Creating Custom Controls
+- Creating Custom Control
+- Bonus Exercise: Deletion of Product

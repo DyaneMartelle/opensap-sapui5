@@ -112,7 +112,13 @@
 							<Column id="unitNumberColumn" hAlign="End">
 								<Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
 							</Column>
+							
+							<!-- bonus exercise -->
+						   <Column id="actionColumn">
+								<Text text="{i18n>tableActionColumn}" id="actionColumnTitle"/>
+							</Column>
 						</columns>
+						
 						<items>
 							<!-- Represents a row of the table -->
 							<ColumnListItem
@@ -139,6 +145,9 @@
 											formatter: '.formatter.numberUnit'
 										}"
 										unit="{CurrencyCode}"/>
+										
+									<Button id="deleteButton" icon="sap-icon://delete" press="onDeleteItem" />
+										
 								</cells>
 							</ColumnListItem>
 						</items>
